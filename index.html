@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Covid Tracker</title>
+    <script>
+        async function getData(){
+            const url3 = 'https://www.trackcorona.live/api/countries'
+            fetch(url3).then( res => {
+                return res.json();
+            }).then( dat => {
+                let cnf = 0,ded = 0,rec = 0;
+                for( i in dat["data"] ){
+                    cnf = cnf+dat["data"][i]["confirmed"];
+                    ded = ded+dat["data"][i]["dead"];
+                    rec = rec+dat["data"][i]["recovered"];
+                }
+                document.getElementById('wrldactdat').innerHTML=''+(cnf-rec-ded)+'';
+                document.getElementById('wrldrecdat').innerHTML=''+rec+'';
+                document.getElementById('wrldcnfdat').innerHTML=''+cnf+'';
+                document.getElementById('wrlddeddat').innerHTML=''+ded+'';
+            })
+            }
+            getData();
+    </script>
+    <link rel="stylesheet" href="CSS/main.css">
+</head>
+<body>
+    <header id="head">
+    <img src="Photos/covid.png" width="7%">
+    <div id="head1">COVID-19 Tracker</div>
+        <form id="myForm2">
+            <input type="text" id="country" placeholder="Search by location" >
+            <input type="submit" id="Go"value="Go" >
+        </form>    
+            <a href="#disp" id="location" onclick="getLocation()">Get current location data</a>
+            &nbsp;&nbsp;
+        <a href="#disp" id="nv1">Search results</a>
+    </header>
+    <br><br><br><br>
+    
+    <fieldset id="world">
+        <div id="wrldhead">
+                World data
+                <hr class="line">
+            </div>
+        <img src="Photos/map-clipart-vector.png" id="img1" width=50%>
+        <hr class="line">
+        <fieldset id="wrldsts">
+            <div id="wrldrec1">
+                Total recovered
+                <br>
+                <div id="wrldrecdat">0</div>
+            </div>
+            <div id="wrldrec2">
+                Total active
+                <br>
+                <div id="wrldactdat">0</div>
+            </div>
+            <div id="wrldrec3">
+                Total confirmed
+                <br>
+                <div id="wrldcnfdat">0</div>
+            </div>
+            <div id="wrldrec4">
+                Total deaths
+                <br>
+                <div id="wrlddeddat">0</div>
+            </div>
+        </fieldset>
+    </fieldset>
+    <br>
+    <fieldset id ="disp" >
+        <div id="srch">
+            Country/State/District
+        </div>
+        <hr class="line">
+        <div id="disprec">
+            Total recovered
+            <br>
+            <div id="disprecdat">
+                0
+            </div>
+        </div>
+        <div id="dispactive">
+            Total active
+            <br>
+            <div id="dispactivedat">
+                0
+            </div>
+        </div>
+        <div id="dispcnf" >
+            Total confirmed
+            <br>
+            <div id="dispcnfdat">
+                0
+            </div>
+        </div>
+        <div id="dispded">
+            Total deaths
+            <br>
+            <div id="dispdeddat">
+                0
+            </div>
+        </div>
+        <div id="dispvcc">
+        </div>
+        <br>
+        <div id="dispperc">
+            Percentage infected
+        </div>
+    </fieldset>
+    <br><br><br><br>
+</body>
+<script src="JS/loaction.js"></script>
+<script src="JS/app.js"></script>
+</html>
