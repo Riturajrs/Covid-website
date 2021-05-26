@@ -1,3 +1,5 @@
+@media (max-width: 512px){ 
+    
 body{
     background-color:rgb(48, 54, 64);
     color:aliceblue;
@@ -13,10 +15,6 @@ body{
 #myForm2{
     margin-top: -3%;
     margin-left: 45%;
-}
-#country{
-    background: transparent;
-    color:aliceblue;
 }
 #Go{
     transition: 0.5s;
@@ -45,7 +43,6 @@ body{
     height: 3vh;
     border-radius: 7px;
     border-width: 2px;
-    cursor: pointer;
 }
 #location{
     transition: 0.5s;
@@ -200,6 +197,4 @@ body{
     overflow-x: hidden;
     margin-left: 30%;
 }
-/* #dispactivedat,#dispdeddat{
-    margin-right: 10%;
-} */
+}

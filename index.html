@@ -5,6 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Covid Tracker</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" ></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
     <script>
         async function getData(){
             const url3 = 'https://www.trackcorona.live/api/countries'
@@ -26,21 +28,22 @@
             getData();
     </script>
     <link rel="stylesheet" href="CSS/main.css">
+    <link rel="stylesheet" href="CSS/mobile.css">
+    <link rel="stylesheet" href="CSS/tablet.css">
 </head>
 <body>
-    <header id="head">
+    <header id="head" >
     <img src="Photos/covid.png" width="7%">
     <div id="head1">COVID-19 Tracker</div>
         <form id="myForm2">
             <input type="text" id="country" placeholder="Search by location" >
-            <input type="submit" id="Go"value="Go" >
+            <input type="submit" id="Go" value="Go" >
         </form>    
             <a href="#disp" id="location" onclick="getLocation()">Get current location data</a>
             &nbsp;&nbsp;
         <a href="#disp" id="nv1">Search results</a>
     </header>
     <br><br><br><br>
-    
     <fieldset id="world">
         <div id="wrldhead">
                 World data
@@ -108,12 +111,11 @@
         <div id="dispvcc">
         </div>
         <br>
-        <div id="dispperc">
-            Percentage infected
+        <div id="dispalert">
         </div>
     </fieldset>
     <br><br><br><br>
 </body>
-<script src="JS/loaction.js"></script>
+<script src="JS/location.js"></script>
 <script src="JS/app.js"></script>
 </html>

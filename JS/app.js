@@ -1,7 +1,7 @@
 var myForm3 = document.getElementById("myForm2");
     myForm3.addEventListener('submit', function (e) {
         e.preventDefault()
-        var cnf,ded,rec,f1 = 0,pop1 = 'Data unavailable',cact,crec,cded,vcc = 'Data unavailable';
+        var cnf,ded,rec,f1 = 0,pop1 = '',cact,crec,cded,vcc = '';
         var country = document.getElementById("country").value;
         console.log(country);
         if( f1 === 0 ){
@@ -14,21 +14,32 @@ var myForm3 = document.getElementById("myForm2");
                     cnf = dat["data"][i]["confirmed"];
                     ded = dat["data"][i]["dead"];
                     rec = dat["data"][i]["recovered"];
+                    if( vcc === 'undefined' ){
+                                vcc = '';
+                    }
+                    document.getElementById('srch').innerHTML = ''+country+'';
+                    document.getElementById('dispactivedat').innerHTML = ''+(cnf-rec-ded)+'';
+                    document.getElementById('dispdeddat').innerHTML = ''+ded+'';
+                    document.getElementById('dispcnfdat').innerHTML = ''+cnf+'';
+                    document.getElementById('disprecdat').innerHTML = ''+rec+'';
+                    document.getElementById('dispvcc').innerHTML = ''+vcc+'';
+                    if( (cnf-rec-ded) >= 4000000 ){
+                        window.alert('Active corona cases in '+country+' is very high. Please stay at home.');
+                       document.getElementById('dispalert').innerHTML = '<fieldset id="veryhigh"><img width=3% src="Photos/alert1.svg"><br>&nbsp;Active corona cases in '+country+' is very high.Please stay at home.</fieldset>';
+                    }
+                    else if( (cnf-rec-ded) >= 2000000 ){
+                        window.alert('Active corona cases in '+country+' is high. Please take necessary precautions.');
+                       document.getElementById('dispalert').innerHTML = '<fieldset id="high"><img width=3% src="Photos/alert1.svg"><br>&nbsp;Active corona cases in '+country+' is high. Please take necessary precautions.</fieldset>';
+                    }
+                    else{
+                        document.getElementById('dispalert').innerHTML = '<fieldset id="low"><img width=3% src="Photos/safe.svg"><br>&nbsp;Active corona cases in '+country+' is relatively low</fieldset>'
+                    }
                     f1 = 1;
                     break;
                 }
             }
-            if(f1 == 1){
-            document.getElementById('srch').innerHTML = ''+country+'';
-            document.getElementById('dispactivedat').innerHTML = ''+(cnf-rec-ded)+'';
-            document.getElementById('dispdeddat').innerHTML = ''+ded+'';
-            document.getElementById('dispcnfdat').innerHTML = ''+cnf+'';
-            document.getElementById('disprecdat').innerHTML = ''+rec+'';
-            document.getElementById('dispvcc').innerHTML = 'Total vaccinated <br>&nbsp;&nbsp; '+vcc+'';
-            document.getElementById('dispprec').innerHTML = 'Percentage of population infected <br> '+pop1+'';
-            }
-
         })
+        f1 = 0;
     }
             if( f1 === 0 ){
                 e.preventDefault();
@@ -48,27 +59,38 @@ var myForm3 = document.getElementById("myForm2");
                             ded = data[i]["districts"][j]["total"]["deceased"];
                             rec = data[i]["districts"][j]["total"]["recovered"];
                             vcc = data[i]["districts"][j]["total"]["vaccinated"];
-                            break;
+                            if( vcc == 'undefined' ){
+                                vcc = '';
+                            }
+                            document.getElementById('srch').innerHTML = ''+country+'';
+                            document.getElementById('dispactivedat').innerHTML = ''+(cnf-rec-ded)+'';
+                            document.getElementById('dispdeddat').innerHTML = ''+ded+'';
+                            document.getElementById('dispcnfdat').innerHTML = ''+cnf+'';    
+                            document.getElementById('disprecdat').innerHTML = ''+rec+'';
+                            if( vcc !== 'undefined')
+                            document.getElementById('dispvcc').innerHTML = 'Total vaccinated <br>&nbsp;&nbsp; '+vcc+'';
+                            if( (cnf-rec-ded)/pop1*100 >= 0.25 ){
+                                window.alert('Active corona cases in '+country+' is very high. Please stay at home.');
+                               document.getElementById('dispalert').innerHTML = '<fieldset id="veryhigh"><img width=3% src="Photos/alert1.svg"><br>&nbsp;Active corona cases in '+country+' is very high.Please stay at home.</fieldset>';
+                            }
+                            else if( (cnf-rec-ded)/pop1*100 >= 0.1 ){
+                                window.alert('Active corona cases in '+country+' is high. Please take necessary precautions.');
+                               document.getElementById('dispalert').innerHTML = '<fieldset id="high"><img width=3% src="Photos/alert1.svg"><br>&nbsp;Active corona cases in '+country+' is high. Please take necessary precautions.</fieldset>';
+                            }
+                            else{
+                                document.getElementById('dispalert').innerHTML = '<fieldset id="low"><img width=3% src="Photos/safe.svg"><br>&nbsp;Active corona cases in '+country+' is relatively low</fieldset>'
+                            }                    
+                        break;
                         }
                     }
                     if(f){
                         break;
                     }
                 }
-        console.log(pop1)
-        if( f1 === 1 ){        
-        document.getElementById('srch').innerHTML = ''+country+'';
-        document.getElementById('dispactivedat').innerHTML = ''+(cnf-rec-ded)+'';
-        document.getElementById('dispdeddat').innerHTML = ''+ded+'';
-        document.getElementById('dispcnfdat').innerHTML = ''+cnf+'';
-        document.getElementById('disprecdat').innerHTML = ''+rec+'';
-        document.getElementById('dispvcc').innerHTML = 'Total vaccinated <br>&nbsp;&nbsp; '+vcc+'';
-        document.getElementById('dispprec').innerHTML = 'Percentage of population infected <br> '+pop1+'%';
-        }
         })
+        f1 = 0;
     }
     if( f1 === 0 ){
-        f1 = 0;
         var url1 = 'https://api.rootnet.in/covid19-in/stats/latest'
         fetch(url1).then(res1 => {
             return res1.json();
@@ -80,18 +102,30 @@ var myForm3 = document.getElementById("myForm2");
                     cnf = dat["data"]["regional"][i]["totalConfirmed"];
                     ded = dat["data"]["regional"][i]["deaths"];
                     rec = dat["data"]["regional"][i]["discharged"];
-                    break;
+                    if( vcc === 'undefined' ){
+                        vcc = '';
+                    }
+                document.getElementById('srch').innerHTML = ''+country+'';
+                document.getElementById('dispactivedat').innerHTML = ''+(cnf-rec-ded)+'';
+                document.getElementById('dispdeddat').innerHTML = ''+ded+'';
+                document.getElementById('dispcnfdat').innerHTML = ''+cnf+'';
+                document.getElementById('disprecdat').innerHTML = ''+rec+'';
+                document.getElementById('dispvcc').innerHTML = ''+vcc+'';
+                if( (cnf-rec-ded) >= 100000 ){
+                    window.alert('Active corona cases in '+country+' is very high. Please stay at home.');
+                   document.getElementById('dispalert').innerHTML = '<fieldset id="veryhigh"><img width=3% src="Photos/alert1.svg"><br>&nbsp;Active corona cases in '+country+' is very high.Please stay at home.</fieldset>';
+                }
+                else if( (cnf-rec-ded) >= 50000 ){
+                    window.alert('Active corona cases in '+country+' is high. Please take necessary precautions.');
+                   document.getElementById('dispalert').innerHTML = '<fieldset id="high"><img width=3% src="Photos/alert1.svg"><br>&nbsp;Active corona cases in '+country+' is high. Please take necessary precautions.</fieldset>';
+                }
+                else{
+                    document.getElementById('dispalert').innerHTML = '<fieldset id="low"><img width=3% src="Photos/safe.svg"><br>&nbsp;Active corona cases in '+country+' is relatively low</fieldset>'
+                }
+                break;
                 }
             }
-        if( f1 === 1 ){
-        document.getElementById('srch').innerHTML = ''+country+'';
-        document.getElementById('dispactivedat').innerHTML = ''+(cnf-rec-ded)+'';
-        document.getElementById('dispdeddat').innerHTML = ''+ded+'';
-        document.getElementById('dispcnfdat').innerHTML = ''+cnf+'';
-        document.getElementById('disprecdat').innerHTML = ''+rec+'';
-        document.getElementById('dispvcc').innerHTML = 'Total vaccinated <br>&nbsp;&nbsp; '+vcc+'';
-        document.getElementById('dispprec').innerHTML = 'Percentage of population infected <br> '+pop1+'%';
-        }
+        f1 = 0;
     })
     }
     })
