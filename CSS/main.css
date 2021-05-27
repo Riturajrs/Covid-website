@@ -44,6 +44,12 @@ body{
     color:aliceblue;
     height: 7vh;
 }
+#img{
+    width: 7%;
+}
+#img1{
+    width: 50%;
+}
 /* Display of stats of world and location based search */
 #dispvcc{
     color:rgb(21, 203, 11);
