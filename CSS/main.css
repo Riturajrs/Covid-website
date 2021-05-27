@@ -1,3 +1,4 @@
+/* For main body */
 body{
     background-color:rgb(48, 54, 64);
     color:aliceblue;
@@ -5,11 +6,13 @@ body{
     font-weight: bold;
     font-family:'Courier New', Courier, monospace;
 }
+/*Navigation bar*/
 #nav{
     display:flex;
     flex-wrap:nowrap;
     margin-left: 65%;
 }
+/* Input text box for "Search by location" */
 #myForm2{
     margin-top: -3%;
     margin-left: 45%;
@@ -18,6 +21,20 @@ body{
     background: transparent;
     color:aliceblue;
 }
+/* For placeholder text in input text box */
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color:aliceblue;
+    opacity: 1; /* Firefox */
+  }
+  
+  :-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color:aliceblue;
+  }
+  
+  ::-ms-input-placeholder { /* Microsoft Edge */
+    color: aliceblue;
+  }
+/* For submit button of input text box */
 #Go{
     transition: 0.5s;
     transition-timing-function: ease-in;
@@ -27,6 +44,7 @@ body{
     color:aliceblue;
     height: 7vh;
 }
+/* Display of stats of world and location based search */
 #dispvcc{
     color:rgb(21, 203, 11);
     font-weight: bolder;
@@ -34,11 +52,12 @@ body{
     margin-left:10%;
     padding: 10px;
 }
-#dispperc{
-    color:rgb(21, 203, 11);
+#percentage{
+    color:rgb(21, 203, 56);
     font-weight: bolder;
     font-size: 1.5rem;
-    margin-left:55%;
+    margin-left:60%;
+    margin-top: -5.25%;
     padding: 10px;
 }
 #myForm2>input{
@@ -56,7 +75,7 @@ body{
     margin-right: 20%;
     border-radius: 5px;
     background-color: rgba(8, 99, 164, 0.7);
-    color:rgb(181, 210, 235);
+    color:aliceblue;
     text-decoration: none;
     font-size: large;
 }
@@ -69,7 +88,7 @@ body{
     margin-right: 5%;
     border-radius: 5px;
     background-color: rgba(8, 99, 164, 0.7);
-    color:rgb(181, 210, 235);
+    color:aliceblue;
     text-decoration: none;
     font-size: large;
 }
@@ -80,7 +99,7 @@ body{
     border-radius: 2px;
 }
 #location:hover,#Go:hover,#nv1:hover{
-    color: honeydew;
+    color: white;
     background-color: rgb(35, 130, 214);
     border-radius: 5px;
     transition-duration: 0.5s;
@@ -104,8 +123,8 @@ body{
     align-self: center;
     margin-left: 23%;
 }
+/* For correct placement and colour allocation of stats */
 #wrldsts,#disp{
-    /* font-family:cursive; */
     border-radius: 10px;
     background-color:rgb(48, 54, 64);
     margin-top:5%;
@@ -130,7 +149,7 @@ body{
     margin-left:2%;
 }
 #wrldrec4,#dispded{
-    color:gray;
+    color:lightgray;
     font-weight: bolder;
     font-size: 1.5rem;
     margin-right:20%;
@@ -138,29 +157,20 @@ body{
     text-align: right;
     padding: 1%;
 }
-#veryhigh{
-    border-radius:10px;
-    background-color:rgba(231, 35, 35, 0.8);
-    display:flex;
-    flex-wrap: nowrap;
+#wrldCurrentDeaths{
+    color:lightslategray;
+    font-weight: bolder;
+    font-size: 1.5rem;
+    margin-right:20%;
+    margin-top: 0%;
+    text-align: right;
+    padding: 1%;
+}
+#wrldCurrentDeathsData{
+    margin-right: 4%;
 }
 #wrldactdat,#dispdeddat{
     margin-right: 1%;
-}
-#dispprec{
-    border-radius: 5px;
-}
-#high{
-    border-radius:10px;
-    background-color:rgba(231, 195, 35,0.8);
-    display:flex;
-    flex-wrap: nowrap;
-}
-#low{
-    border-radius:10px;
-    background-color:rgba(110, 202, 64, 0.8);
-    display:flex;
-    flex-wrap: nowrap;
 }
 #wrldrec3,#dispcnf{
     color:rgb(35, 104, 241);
@@ -185,6 +195,18 @@ body{
 #wrlddeddat,#dispactivedat{
     margin-right: 2.25%;
 }
+#wrldCurrentActive{
+    color:rgb(171, 30, 30);
+    font-weight: bolder;
+    font-size: 1.5rem;
+    text-align: left;
+    margin-left: 10%;
+    margin-top: -5.5%;
+    padding: 10px;
+}
+#wrldCurrentActiveData{
+    margin-left: 5%;
+}
 #world{
     margin: 1%;
     padding: 1%;
@@ -196,10 +218,22 @@ body{
     padding: 2%;
     border-radius: 10px;
 }
-.bingwidget{
-    overflow-x: hidden;
-    margin-left: 30%;
+/* For alert box based on location */
+#veryhigh{
+    border-radius:10px;
+    background-color:rgba(231, 35, 35, 0.8);
+    display:flex;
+    flex-wrap: nowrap;
 }
-/* #dispactivedat,#dispdeddat{
-    margin-right: 10%;
-} */
+#high{
+    border-radius:10px;
+    background-color:rgba(231, 195, 35,0.8);
+    display:flex;
+    flex-wrap: nowrap;
+}
+#low{
+    border-radius:10px;
+    background-color:rgba(110, 202, 64, 0.8);
+    display:flex;
+    flex-wrap: nowrap;
+}
