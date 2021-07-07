@@ -5,7 +5,7 @@ function getLocation(){
     navigator.geolocation.getCurrentPosition(pos => {
     lat = pos.coords.latitude;
     lon = pos.coords.longitude;
-    const key = "AIzaSyDbZRtRdGCDi7K6iZr2lbWNUJi3J5H-q08";
+    const key = "AIzaSyBxnh-q51BVw_5U_Uv05LPrWq6tlxasSUI";
     let url3 = 'https://maps.googleapis.com/maps/api/geocode/json?latlng='+lat+','+lon+'&key='+key;
     fetch(url3).then( response => {
         return response.json();
