@@ -1,7 +1,7 @@
 //  This function gets data on COVID-19 cases based on location 
 function getLocation(){
     let lat,lon;
-    window.alert("Please make sure your GPS is turned on");
+    window.alert("Please make sure your GPS is turned on!");
     navigator.geolocation.getCurrentPosition(pos => {
     lat = pos.coords.latitude;
     lon = pos.coords.longitude;
